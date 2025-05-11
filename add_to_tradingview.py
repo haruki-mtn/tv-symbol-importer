@@ -42,7 +42,7 @@ for code in codes:
 
         # ウォッチリストに追加ボタンを押す
         add_button = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "span.addAction-oRSs8UQo")))
-        add_button.click()
+        add_button[0].click()
         time.sleep(1)
 
     except Exception as e:
