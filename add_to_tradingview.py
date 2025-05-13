@@ -13,7 +13,6 @@ codes = [str(cell.value).zfill(4) for cell in ws["B"][1:] if cell.value]
 
 # Chromeの設定
 options = webdriver.ChromeOptions()
-options.add_argument("--start-maximized")
 options.add_argument("--user-data-dir=C:/chrome-dev-profile")
 options.add_argument("--profile-directory=Default")
 
@@ -34,7 +33,6 @@ for code in codes:
     try:
         # モーダル内の検索ボックスに証券コードを入力
         search_box = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='text'][placeholder='検索']")))
-        search_box.clear()
         search_box.send_keys(code)
         search_box.send_keys(Keys.ENTER)
 
@@ -60,7 +58,6 @@ for code in codes:
 
     except Exception as e:
         print(f"{code} でエラー: {e}")
-        continue
 
 print("完了")
 driver.quit()
