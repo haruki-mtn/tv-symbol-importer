@@ -6,8 +6,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import openpyxl
 
-# Excelファイルから証券コードを取得
-wb = openpyxl.load_workbook("stock-code.xlsx")
+# Excelファイルから証券コード（シンボル）を取得
+wb = openpyxl.load_workbook("symbol.xlsx")
 ws = wb.active
 codes = [str(cell.value).zfill(4) for cell in ws["B"][1:] if cell.value]
 
@@ -31,7 +31,7 @@ add_symbol_btn.click()
 
 for code in codes:
     try:
-        # モーダル内の検索ボックスに証券コードを入力
+        # モーダル内の検索ボックスにシンボルを入力
         search_box = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='text'][placeholder='検索']")))
         search_box.send_keys(code)
         search_box.send_keys(Keys.ENTER)
